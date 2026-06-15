@@ -151,11 +151,14 @@ def render_prompt(prompt, values: Dict[str, str]) -> str:
         for item in prompt.inputs:
             placeholder = "{{" + item.name + "}}"
             shown_value = values.get(item.name, placeholder)
+
             if item.description:
-                lines.append(f"- {item.name}: {shown_value} - {item.description}")
+                lines.append(f"- {item.name} ({item.description}):")
             else:
-                lines.append(f"- {item.name}: {shown_value}")
-        lines.append("")
+                lines.append(f"- {item.name}:")
+
+            lines.append(f"  {shown_value}")
+            lines.append("")
 
     if prompt.constraints:
         lines.extend(["Constraints", "-----------"])
