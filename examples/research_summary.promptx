@@ -1,0 +1,9 @@
+prompt ResearchSummary {
+    role "You are a helpful research assistant."
+    task "Summarize {{title}} using {{abstract}}."
+    input title : "Title of the paper"
+    input abstract : "Abstract of the paper"
+    constraint "Use clear bullet points."
+    constraint "Do not invent details."
+    output markdown
+}

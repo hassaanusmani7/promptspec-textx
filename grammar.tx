@@ -1,0 +1,56 @@
+// PromptSpec grammar for textX.
+// A file contains one or more structured prompt specifications.
+
+Model:
+    prompts*=Prompt
+;
+
+Prompt:
+    'prompt' name=ID '{'
+        role=Role
+        task=Task
+        inputs*=Input
+        constraints*=Constraint
+        examples*=Example
+        output=Output
+    '}'
+;
+
+Role:
+    'role' text=STRING
+;
+
+Task:
+    'task' text=STRING
+;
+
+Input:
+    'input' name=ID (':' description=STRING)?
+;
+
+Constraint:
+    'constraint' text=STRING
+;
+
+Example:
+    'example' name=ID '{'
+        user=User
+        assistant=Assistant
+    '}'
+;
+
+User:
+    'user' text=STRING
+;
+
+Assistant:
+    'assistant' text=STRING
+;
+
+Output:
+    'output' format=OutputFormat
+;
+
+OutputFormat:
+    'markdown' | 'json' | 'text' | 'xml'
+;
